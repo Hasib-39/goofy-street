@@ -1,16 +1,28 @@
-# goofy_street
+# Goofy Street 
 
-This Flutter project is an eCommerce mobile application for clothing with essential user authentication, navigation, and shopping features..
+## App Overview
+### Purpose of the App
+The purpose of this app is to create a user-friendly eCommerce platform for clothing where users can browse, search, and purchase apparel seamlessly. The app aims to offer a smooth shopping experience with features such as product browsing, adding to cart or favorites, managing user profiles, and secure checkout.
 
-## Getting Started
+## App Vision
+A simple and elegant clothing store app built using Flutter.
 
-This project is a starting point for a Flutter application.
+## Objectives
+1. Implement core eCommerce functionalities.
+2. Practice clean navigation and UI structure.
+3. Integrate Firebase authentication and state management.
 
-A few resources to get you started if this is your first Flutter project:
+## Navigation Flow
+There are mainly two types of users. Initially we will focus on the user/Learner part. For future scope we might add Admin part.
+### 👩‍🛍 Learner (User) Journey
+1. Opens app → see Splash Screen.
+2. Proceeds to Login/Signup page.
+3. Logs in → redirected to Home Page with product carousel and product cards. 
+4. Navigates to Shop Tab → searches categories → adds product to Favourites.
+5. Goes to Bag Tab → reviews selected items → proceeds to Checkout.
+6. Fills Shipping Address → selects Payment Method → sees Success Page.
+### 🧑‍💻 Admin (Optional) Journey
+1. Logs into the admin dashboard.
+2. Adds new product details with image and category.
+3. Reviews user orders and manages stock inventory.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
