@@ -9,6 +9,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // image
             SizedBox(
@@ -46,10 +47,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   // Button below the text
                   Positioned(
-                    bottom: 40, // distance from bottom of image
+                    bottom: 24, // distance from bottom of image
                     left: 22,
                     right: 0,
                     child: Align(
@@ -79,6 +79,42 @@ class HomeScreen extends StatelessWidget {
                             )
                           ),
                         ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 16,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22.0), // optional for consistent spacing
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // 👈 pushes columns to opposite sides
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start, // left-aligned
+                    children: [
+                      Text(
+                        "New",
+                        style: GoogleFonts.poppins(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "You've never seen it before",
+                        style: GoogleFonts.poppins(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "View all",
+                      style: GoogleFonts.poppins(
+                        color: Colors.red,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
