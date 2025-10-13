@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utils/constants.dart';
+import '../widgets/product_card.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // image
             SizedBox(
@@ -46,10 +51,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   // Button below the text
                   Positioned(
-                    bottom: 40, // distance from bottom of image
+                    bottom: 24, // distance from bottom of image
                     left: 22,
                     right: 0,
                     child: Align(
@@ -85,6 +89,104 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 16,),
+            // New Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22.0), // optional for consistent spacing
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // 👈 pushes columns to opposite sides
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start, // left-aligned
+                    children: [
+                      Text(
+                        "New",
+                        style: GoogleFonts.poppins(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "You've never seen it before",
+                        style: GoogleFonts.poppins(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "View all",
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 8,),
+            SizedBox(
+              height: 300,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  return ProductCard(product: products[index]);
+                },
+              ),
+            ),
+          SizedBox(height: 24,),
+          //   Sale Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22.0), // optional for consistent spacing
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // 👈 pushes columns to opposite sides
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start, // left-aligned
+                    children: [
+                      Text(
+                        "Sale",
+                        style: GoogleFonts.poppins(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red
+                        ),
+                      ),
+                      Text(
+                        "Super Summer Sale",
+                        style: GoogleFonts.poppins(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "View all",
+                      style: GoogleFonts.poppins(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 8,),
+            SizedBox(
+              height: 300,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  return ProductCard(product: products[index]);
+                },
+              ),
+            ),
+            SizedBox(height: 16,),
           ],
         ),
       ),
