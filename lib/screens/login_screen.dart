@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goofy_street/screens/main_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../providers/auth_provider.dart';
@@ -45,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Future.delayed(const Duration(milliseconds: 500), () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(builder: (context) => const MainScreen()),
           );
         });
       } else if (mounted) {
