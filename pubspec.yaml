@@ -30,7 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  
+  confetti: ^0.7.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -46,6 +47,9 @@ dependencies:
   
   # Icons
   font_awesome_flutter: ^10.6.0
+  carousel_slider: ^5.1.1
+  google_fonts: ^6.3.2
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +78,17 @@ flutter:
     - assets/screens/product_card/
     - assets/screens/select_size/
     - assets/screens/ratings_reviews/
+<<<<<<< HEAD
+=======
+    - assets/images/
+    - assets/products/
+    - assets/mastercard.png
+    - assets/fedex.png
+    - assets/usps.png
+    - assets/dhl.png
+    - assets/visa.png
+    - assets/paypal.png
+>>>>>>> 84b984abae052d7c6e76178fa1e6691777304b35
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
