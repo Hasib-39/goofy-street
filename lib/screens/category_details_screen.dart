@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../models/product_model.dart';
+import '../utils/constants.dart';
+
 class CategoryDetailsScreen extends StatelessWidget {
   final String gender;
   final String category;
@@ -93,14 +96,15 @@ class CategoryDetailsScreen extends StatelessWidget {
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
               ),
-              itemCount: 6, // Just for demo
+              itemCount: _getCategoryProducts().length,
               itemBuilder: (context, index) {
+                final product = _getCategoryProducts()[index];
                 return _buildProductCard(
-                  image: "assets/products/casual_shirt.webp",
-                  name: ["Pullover", "Blouse", "T-shirt", "Shirt"][index % 4],
-                  price: [51, 34, 12, 51][index % 4],
-                  rating: (3 + (index % 2)).toDouble(),
-                  reviews: (70 + index * 10),
+                  image: product.imagePath,
+                  name: product.title,
+                  price: product.currentPrice,
+                  rating: product.rating,
+                  reviews: product.boughtCount,
                 );
               },
             ),
@@ -108,6 +112,53 @@ class CategoryDetailsScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  List<ProductModel> _getCategoryProducts() {
+    // Get the appropriate product list based on gender
+    switch (gender.toLowerCase()) {
+      case 'women':
+        switch (category.toLowerCase()) {
+          case 'new':
+            return WomenProducts.newArrivals;
+          case 'clothes':
+            return WomenProducts.clothes;
+          case 'shoes':
+            return WomenProducts.shoes;
+          case 'accesories':
+            return WomenProducts.accessories;
+          default:
+            return [];
+        }
+      case 'men':
+        switch (category.toLowerCase()) {
+          case 'new':
+            return MenProducts.newArrivals;
+          case 'clothes':
+            return MenProducts.clothes;
+          case 'shoes':
+            return MenProducts.shoes;
+          case 'accesories':
+            return MenProducts.accessories;
+          default:
+            return [];
+        }
+      case 'kids':
+        switch (category.toLowerCase()) {
+          case 'new':
+            return KidsProducts.newArrivals;
+          case 'clothes':
+            return KidsProducts.clothes;
+          case 'shoes':
+            return KidsProducts.shoes;
+          case 'accesories':
+            return KidsProducts.accessories;
+          default:
+            return [];
+        }
+      default:
+        return [];
+    }
   }
 
   Widget _buildFilterChip(String label, bool isSelected) {
@@ -133,7 +184,7 @@ class CategoryDetailsScreen extends StatelessWidget {
   Widget _buildProductCard({
     required String image,
     required String name,
-    required int price,
+    required double price,
     required double rating,
     required int reviews,
   }) {
@@ -145,7 +196,7 @@ class CategoryDetailsScreen extends StatelessWidget {
           BoxShadow(
             offset: const Offset(0, 2),
             blurRadius: 4,
-            color: Colors.black.withValues(alpha: 0.1),
+            color: Colors.black.withOpacity(0.1),
           ),
         ],
       ),

@@ -131,9 +131,9 @@ class HomeScreen extends StatelessWidget {
               height: 300,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: products.length,
+                itemCount: HomeProducts.newArrivals.length,
                 itemBuilder: (context, index) {
-                  return ProductCard(product: products[index]);
+                  return ProductCard(product: HomeProducts.newArrivals[index]);
                 },
               ),
             ),
@@ -180,9 +180,9 @@ class HomeScreen extends StatelessWidget {
               height: 300,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: products.length,
+                itemCount: HomeProducts.saleItems.length,
                 itemBuilder: (context, index) {
-                  return ProductCard(product: products[index]);
+                  return ProductCard(product: HomeProducts.saleItems[index]);
                 },
               ),
             ),
