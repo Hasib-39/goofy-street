@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+
 import '../providers/auth_provider.dart';
 import 'login_screen.dart';
 
@@ -17,6 +18,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
+
+  bool _isValidEmail(String email) {
+    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
+  }
 
   @override
   void dispose() {
@@ -70,7 +75,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             constraints: BoxConstraints(
-              minHeight: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
+              minHeight: MediaQuery.of(context).size.height -
+                  MediaQuery.of(context).padding.top,
             ),
             child: Form(
               key: _formKey,
@@ -267,8 +273,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             if (value == null || value.trim().isEmpty) {
                               return 'Please enter your email';
                             }
-                            if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                                .hasMatch(value)) {
+                            if (!_isValidEmail(value)) {
                               return 'Please enter a valid email';
                             }
                             return null;
@@ -340,8 +345,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                             suffixIcon: IconButton(
-                              icon: Icon(_isPasswordVisible ? Icons.visibility_off : Icons.visibility, color: Colors.black),
-                              onPressed: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
+                              icon: Icon(
+                                _isPasswordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: const Color(0xFF9B9B9B),
+                                size: 20,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _isPasswordVisible = !_isPasswordVisible;
+                                });
+                              },
                             ),
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 16,
@@ -363,9 +378,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   const SizedBox(height: 26),
 
-                  // Sign Up Button (consumer)
-                  const SizedBox(height: 20),
-
+                  // Sign Up Button
                   Consumer<AuthProvider>(
                     builder: (context, authProvider, child) {
                       return SizedBox(
@@ -410,16 +423,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Already have an account?', style: TextStyle(color: Color(0xFF9B9B9B))),
+                      const Text(
+                        'Already have an account?',
+                        style: TextStyle(color: Color(0xFF9B9B9B)),
+                      ),
                       TextButton(
-                        onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const LoginScreen())),
-                        child: const Text('Login', style: TextStyle(color: Colors.black)),
-                      )
+                        onPressed: () => Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) => const LoginScreen()),
+                        ),
+                        child: const Text(
+                          'Login',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
                     ],
                   ),
 
-                  // Spacer to push social login to bottom
-                  const SizedBox(height: 18),
+                  const Spacer(),
 
                   // Social login section
                   Column(
@@ -463,141 +484,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(height: 20),
                 ],
               ),
-            ),
-          ),
-        ),
-      ),
-    );
-                              if (value.length < 6) {
-                                return 'Password must be at least 6 characters long';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 26),
-
-                    // Sign up button
-                    Center(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          elevation: 8,
-                          padding: const EdgeInsets.symmetric(horizontal: 56, vertical: 14),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                        ),
-                        onPressed: _handleSignUp,
-                        child: const Text('Create account', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      ),
-                    ),
-                    const SizedBox(height: 18),
-
-                    // Already have account
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text('Already have an account?', style: TextStyle(color: Color(0xFF9B9B9B))),
-                        TextButton(
-                          onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const LoginScreen())),
-                          child: const Text('Login', style: TextStyle(color: Colors.black)),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-                const SizedBox(height: 20),
-
-                // Sign Up Button
-                Consumer<AuthProvider>(
-                  builder: (context, authProvider, child) {
-                    return SizedBox(
-                      width: double.infinity,
-                      height: 48,
-                      child: ElevatedButton(
-                        onPressed:
-                            authProvider.isLoading ? null : _handleSignUp,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          elevation: 8,
-                          shadowColor: Colors.black.withOpacity(0.4),
-                        ),
-                        child: authProvider.isLoading
-                            ? const SizedBox(
-                                height: 20,
-                                width: 20,
-                                child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                  strokeWidth: 2,
-                                ),
-                              )
-                            : const Text(
-                                'SIGN UP',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: 1,
-                                ),
-                              ),
-                      ),
-                    );
-                  },
-                ),
-
-                // Spacer to push social login to bottom
-                const Spacer(),
-
-                // Social login section
-                Column(
-                  children: [
-                    const Text(
-                      'Or sign up with social account',
-                      style: TextStyle(
-                        color: Color(0xFF9B9B9B),
-                        fontSize: 14,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _SocialButton(
-                          child: const FaIcon(
-                            FontAwesomeIcons.google,
-                            color: Color(0xFFDB4437),
-                            size: 24,
-                          ),
-                          onTap: () {
-                            // Handle Google sign up
-                          },
-                        ),
-                        const SizedBox(width: 16),
-                        _SocialButton(
-                          child: const FaIcon(
-                            FontAwesomeIcons.facebook,
-                            color: Color(0xFF4267B2),
-                            size: 24,
-                          ),
-                          onTap: () {
-                            // Handle Facebook sign up
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-              ],
             ),
           ),
         ),
