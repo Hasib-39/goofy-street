@@ -1,5 +1,7 @@
 # Goofy Street 
 
+
+
 ## App Overview
 ### Purpose of the App
 The purpose of this app is to create a user-friendly eCommerce platform for clothing where users can browse, search, and purchase apparel seamlessly. The app aims to offer a smooth shopping experience with features such as product browsing, adding to cart or favorites, managing user profiles, and secure checkout.
@@ -11,6 +13,11 @@ A simple and elegant clothing store app built using Flutter.
 1. Implement core eCommerce functionalities.
 2. Practice clean navigation and UI structure.
 3. Integrate Firebase authentication and state management.
+
+## App Screenshots
+<p>
+<img src="assets/screenshots/product-card.jpg" width="200"> <img src="assets/screenshots/product-card1.jpg" width="200"> <img src="assets/screenshots/login.jpg" width="200"> <img src="assets/screenshots/forgot.jpg" width="200"> <img src="assets/screenshots/size.jpg" width="200"> <img src="assets/screenshots/color.jpg" width="200"> <img src="assets/screenshots/review.jpg" width="200"> <img src="assets/screenshots/screenshots.jpg" width="200">
+</p>
 
 ## Navigation Flow
 There are mainly two types of users. Initially we will focus on the user/Learner part. For future scope we might add Admin part.
