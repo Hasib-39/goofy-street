@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../providers/auth_provider.dart';
 import 'forgot_password_screen.dart';
+import 'product_card_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -40,7 +41,10 @@ class _LoginScreenState extends State<LoginScreen> {
             backgroundColor: Colors.green,
           ),
         );
-        // Navigate to home screen
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const ProductCardScreen()),
+        );
       } else if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
