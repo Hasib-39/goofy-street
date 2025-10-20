@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../providers/auth_provider.dart';
 import 'forgot_password_screen.dart';
+import 'product_card_screen.dart';
 import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
