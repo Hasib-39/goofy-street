@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goofy_street/screens/shop_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'home_screen.dart';
 
@@ -14,7 +15,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const Center(child: Text("Shop Page")),
+    const ShopScreen(),
     const Center(child: Text("Bag Page")),
     const Center(child: Text("Favourite Page")),
     const Center(child: Text("Profile Page")),
