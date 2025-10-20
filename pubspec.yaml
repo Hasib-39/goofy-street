@@ -78,6 +78,8 @@ flutter:
     - assets/screens/product_card/
     - assets/screens/select_size/
     - assets/screens/ratings_reviews/
+<<<<<<< HEAD
+=======
     - assets/images/
     - assets/products/
     - assets/mastercard.png
@@ -86,6 +88,7 @@ flutter:
     - assets/dhl.png
     - assets/visa.png
     - assets/paypal.png
+>>>>>>> 84b984abae052d7c6e76178fa1e6691777304b35
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

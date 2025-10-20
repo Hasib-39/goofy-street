@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'dart:math' show pi;
+
 import 'package:confetti/confetti.dart';
+import 'package:flutter/material.dart';
 
 class SuccessScreen extends StatefulWidget {
   const SuccessScreen({super.key});
@@ -25,8 +27,10 @@ class _SuccessScreenState extends State<SuccessScreen>
     _confettiController.play();
 
     // ✨ Animations
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
 
     _fadeAnimation = CurvedAnimation(
       parent: _animationController,
@@ -60,19 +64,25 @@ class _SuccessScreenState extends State<SuccessScreen>
           alignment: Alignment.center,
           children: [
             // 🎊 Confetti Animation
-            ConfettiWidget(
-              confettiController: _confettiController,
-              blastDirectionality: BlastDirectionality.explosive,
-              shouldLoop: false,
-              colors: const [
-                Colors.redAccent,
-                Colors.orange,
-                Colors.yellow,
-                Colors.blue,
-                Colors.green,
-              ],
-              emissionFrequency: 0.05,
-              numberOfParticles: 25,
+            Align(
+              alignment: Alignment.topCenter,
+              child: ConfettiWidget(
+                confettiController: _confettiController,
+                blastDirection: pi / 2,
+                maxBlastForce: 5,
+                minBlastForce: 2,
+                emissionFrequency: 0.05,
+                numberOfParticles: 50,
+                gravity: 0.3,
+                shouldLoop: false,
+                colors: const [
+                  Colors.green,
+                  Colors.yellow,
+                  Colors.pink,
+                  Colors.orange,
+                  Colors.blue
+                ],
+              ),
             ),
 
             // 🎉 Main Success Content with fade + slide animation
@@ -85,12 +95,12 @@ class _SuccessScreenState extends State<SuccessScreen>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // 🛍️ Illustration image
+                      // 🛍️ Success image
                       Image.asset(
                         'assets/images/success_bag1.png',
-                       height: 280, // 
-                       width: 280,  // 
-                      fit: BoxFit.contain,
+                        height: 280,
+                        width: 280,
+                        fit: BoxFit.contain,
                       ),
 
                       const SizedBox(height: 32),
@@ -98,21 +108,22 @@ class _SuccessScreenState extends State<SuccessScreen>
                       const Text(
                         'Success!',
                         style: TextStyle(
-                          fontSize: 28,
+                          fontSize: 34,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
+                          letterSpacing: 0.5,
                         ),
                       ),
 
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 16),
 
                       const Text(
                         'Your order will be delivered soon.\nThank you for choosing our app!',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.grey,
-                          height: 1.4,
+                          color: Color(0xFF9B9B9B),
+                          height: 1.5,
                         ),
                       ),
 
@@ -120,25 +131,26 @@ class _SuccessScreenState extends State<SuccessScreen>
 
                       SizedBox(
                         width: double.infinity,
-                        height: 55, 
+                        height: 48,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+                            backgroundColor: Colors.black,
+                            foregroundColor: Colors.white,
+                            elevation: 8,
+                            shadowColor: Colors.black.withOpacity(0.4),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(25),
                             ),
-                            padding: const EdgeInsets.symmetric(vertical: 16),
                           ),
                           onPressed: () {
-                            Navigator.pop(context); // go back to previous screen
+                            Navigator.pop(context);
                           },
                           child: const Text(
                             'CONTINUE SHOPPING',
                             style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              letterSpacing: 1.2,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 1,
                             ),
                           ),
                         ),

@@ -43,6 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
             backgroundColor: Colors.green,
           ),
         );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const ProductCardScreen()),
+        );
         // Navigate to home screen
         Future.delayed(const Duration(milliseconds: 500), () {
           Navigator.pushReplacement(
